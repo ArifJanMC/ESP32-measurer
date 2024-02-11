@@ -100,13 +100,15 @@ void performMeasurements() {
   String dataString = String(now.year(), DEC) + "-" + String(now.month(), DEC) + "-" + String(now.day(), DEC) +
                       " " + String(now.hour(), DEC) + ":" + String(now.minute(), DEC) + ":" + String(now.second(), DEC) + "\n";
 
-  sensors.requestTemperatures();
-  for (int i = 0; i < sensors.getDeviceCount(); i++) {
-    if (sensors.getAddress(tempDeviceAddress, i)) {
-      char sensorId[5]; // Enough space for two hex bytes and null terminator
-      sprintf(sensorId, "%02X%02X", tempDeviceAddress[6], tempDeviceAddress[7]);
-      float tempC = sensors.getTempC(tempDeviceAddress);
-      dataString += String(sensorId) + ";" + String(tempC, 2) + "\n";
+  for (int j = 0; j < 5; j++) {
+    sensors.requestTemperatures();
+    for (int i = 0; i < sensors.getDeviceCount(); i++) {
+      if (sensors.getAddress(tempDeviceAddress, i)) {
+        char sensorId[5]; // Enough space for two hex bytes and null terminator
+        sprintf(sensorId, "%02X%02X", tempDeviceAddress[6], tempDeviceAddress[7]);
+        float tempC = sensors.getTempC(tempDeviceAddress);
+        dataString += String(sensorId) + ";" + String(tempC, 2) + "\n";
+     }
     }
   }
 
