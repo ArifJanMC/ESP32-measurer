@@ -100,7 +100,7 @@ void performMeasurements() {
   String dataString = String(now.year(), DEC) + "-" + String(now.month(), DEC) + "-" + String(now.day(), DEC) +
                       " " + String(now.hour(), DEC) + ":" + String(now.minute(), DEC) + ":" + String(now.second(), DEC) + "\n";
 
-  for (int j = 0; j < 5; j++) {
+  for (int j = 0; j < 3; j++) {
     sensors.requestTemperatures();
     for (int i = 0; i < sensors.getDeviceCount(); i++) {
       if (sensors.getAddress(tempDeviceAddress, i)) {
